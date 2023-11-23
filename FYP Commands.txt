@@ -1,0 +1,27 @@
+
+## For WEB GUI
+conda activate myenv1
+cd C:\Users\Laeticia\Vehicle-Detection
+npm start
+
+####WithoutOpenVino
+conda activate myenv1
+cd C:\Users\Laeticia\Vehicle-Detection
+python wpodnet_script_L1.py --weights runs/train/exp12/weights/best.pt --source 1 
+
+#With Arduino
+python ArduinoTest.py 
+
+# To convert .h5 file to tensorflow
+python wpodnet_load.py
+# To convert to IR files for openvino inference
+mo --saved_model_dir C:\Users\Laeticia\Vehicle-Detection\wpod-net-tf --input_shape [2,1200,600,3] --output_dir C:\Users\Laeticia\Vehicle-Detection\wpod-net-tf\IR_files
+
+
+###With OpenVino
+conda activate myenv1
+cd C:\Users\Laeticia\Vehicle-Detection(Openvino)
+python wpodnet_openvino2.py --weights runs/train/exp12/weights/best.pt --source 1 --timer-duration 5
+
+or for with Arduino
+python ArduinoTest.py 
